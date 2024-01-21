@@ -23,7 +23,6 @@ fn get_arguments() {
         .help("Image that will be created with the desired effect");
 
     let width: Arg = Arg::new("width")
-        .short('w')
         .long("width")
         .required(true)
         .value_parser(value_parser!(u32))
@@ -31,7 +30,6 @@ fn get_arguments() {
 
 
     let height: Arg = Arg::new("height")
-        .short('h')
         .long("height")
         .required(true)
         .value_parser(value_parser!(u32))
@@ -109,6 +107,7 @@ fn get_arguments() {
                 "resize" => {
                     let width = command_args.get_one::<u32>("width").unwrap();
                     let height = command_args.get_one::<u32>("height").unwrap();
+                    renderer::resize(source, target, &width, &height);
                 },
                 _ => println!("Error..."),
             }
