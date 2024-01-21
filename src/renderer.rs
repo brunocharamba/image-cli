@@ -22,7 +22,9 @@ pub fn rotate(source_image: &str, target_image: &str, direction: Direction, valu
   changed.save(target_image).expect("Failed to save the image.");
 }
 
-pub fn resize(source_image: &str, target_image: &str) {
+pub fn resize(source_image: &str, target_image: &str, width: &u32, height: &u32) {
   let original = image::open(source_image).expect("Failed when opening the image.");
-  original.resize(100, 100, FilterType::CatmullRom);
+  let changed = original.resize(*width, *height, FilterType::CatmullRom);
+
+  changed.save(target_image).expect("Failed to save the image.");
 }
